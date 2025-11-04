@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akinator Prototype - Estrutura de Dados</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        #container { max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; }
+        .botoes-resposta button { margin: 10px; padding: 10px 20px; font-size: 16px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <h1>🔮 Akinator Prototype</h1>
+        
+        <p id="pergunta-display">Pense em um personagem. Estou pronto para começar!</p>
+        
+        <hr>
+
+        <p>Candidatos restantes: <span id="contagem-candidatos">?</span></p>
+
+        <div class="botoes-resposta">
+            <button id="btn-sim">Sim</button>
+            <button id="btn-nao">Não</button>
+            </div>
+
+        <div id="resultado-final" style="margin-top: 20px; font-weight: bold;"></div>
+        
+    </div>
+
+    <script src="akinator.js"></script> 
+    </body>
+</html>
