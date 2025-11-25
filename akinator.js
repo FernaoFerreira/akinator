@@ -115,6 +115,14 @@ const candidatos = [
     }
 ];
 
+// Initialize game state
+let candidatosRestantes = [...candidatos];
+let perguntasFeitas = [];
+let perguntaAtual = null;
+
+const todasAsPerguntas = Object.keys(candidatos[0].atributos);
+
+//processamento de linguagem
 const linguagemNatural = {
     eHumano : 'é humano',
     usaOculos : "usa óculos",
@@ -124,18 +132,13 @@ const linguagemNatural = {
     usaArmaBranca : "usa arma branca",
     temCabeloLoiro : "tem cabelo loiro"
 }
-//Cria as variáveis de estado
-
-let candidatosRestantes = [...candidatos];
-let perguntasFeitas = [];
-
-const todasAsPerguntas = Object.keys(candidatos[0].atributos);
 
 //cria um array de perguntas disponiveis
 
 function escolherMelhorPergunta(perguntasFeitas, candidatosRestantes){
+
     //pega todas as perguntas que ainda nao foram feitas
-    const perguntasDisponiveis = todasAsPerguntas.filter(pergunta => !perguntasFeitas.includes(pergunta));
+    const perguntasDisponiveis = todasAsPerguntas.filter(   pergunta => !perguntasFeitas.includes(pergunta));
 
     //verifica se o jogo pode continuar
     if(perguntasDisponiveis.length === 0){
@@ -165,26 +168,73 @@ function escolherMelhorPergunta(perguntasFeitas, candidatosRestantes){
     
 }
 
+// Event listeners for buttons
+btnSim.addEventListener("click", () => {
+    if (!perguntaAtual) return;
+    
+    // Filter candidates that have this attribute as true
+    candidatosRestantes = candidatosRestantes.filter(
+        c => c.atributos[perguntaAtual] === true
+    );
+    
+    contagemCandidatos.textContent = candidatosRestantes.length;
+    playGame();
+});
 
-
-function playGame(){
-
-    //casos base
-    if(candidatosRestantes.length === 1){
-        console.log("é fulano?"); //como eu faço pra ele retornar o nome do personagem
+btnNao.addEventListener("click", () => {
+    if (!perguntaAtual) return;
+    
+    // Filter candidates that have this attribute as false
+    candidatosRestantes = candidatosRestantes.filter(
+        c => c.atributos[perguntaAtual] === false
+    );
+    
+    contagemCandidatos.textContent = candidatosRestantes.length;
+    playGame();
+});
+    
+//retorna a proxima pergunta
+function proximaPergunta() {
+    const pergunta = escolherMelhorPergunta(perguntasFeitas, candidatosRestantes);
+    
+    if (pergunta === null) {
+        return null;
     }
-    if(candidatosRestantes === 0){
-        console.log("Você me venceu, gostaria de registrar o nome do personagem?");
-    }
-
-    //como eu faço pra ele imprimir a melhor pergunta
-
-    const pergunta = escolherMelhorPergunta();
-    //tenho que fazer o akinator desclassificar os personagens dependendo da resposta pra arvore de decisao funcionar
-    if(btnNao.addEventListener("click", () =>{
-        //logica da percursao da arvore
-    }));
-    if(btnSim.addEventListener("click", () => {
-        //faz outra pergunta
-    }))  
+    
+    perguntasFeitas.push(pergunta);
+    perguntaAtual = pergunta;
+    
+    // Convert to human-readable format
+    const perguntaFormatada = linguagemNatural[pergunta] || pergunta;
+    perguntaDisplay.textContent = perguntaFormatada + "?";
+    
+    return pergunta;
 }
+
+function playGame() {
+    // Base case: only one candidate left
+    if (candidatosRestantes.length === 1) {
+        const personagem = candidatosRestantes[0].nome;
+        resultadoFinal.textContent = `É ${personagem}?`;
+        btnSim.disabled = true;
+        btnNao.disabled = true;
+        return;
+    }
+    
+    // Base case: no candidates left
+    if (candidatosRestantes.length === 0) {
+        resultadoFinal.textContent = "Você me venceu! Gostaria de registrar o nome do personagem?";
+        btnSim.disabled = true;
+        btnNao.disabled = true;
+        return;
+    }
+    
+    // Continue game: ask next question
+    proximaPergunta();
+}
+
+// Start the game when page loads
+window.addEventListener('DOMContentLoaded', () => {
+    contagemCandidatos.textContent = candidatosRestantes.length;
+    playGame();
+});
