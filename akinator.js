@@ -112,6 +112,111 @@ const candidatos = [
             usaArmaBranca: true, // Espada
             temCabeloLoiro: true
         }
+    },
+     {
+        nome: "Darth Vader",
+        atributos: {
+            eHumano: true, // Anakin era humano
+            usaOculos: false,
+            eAdulto: true,
+            usaMagia: true, // A Força
+            apareceEmFilme: true,
+            usaArmaBranca: false, // Sabre de luz não conta como arma branca tradicional
+            temCabeloLoiro: false
+        }
+    },
+    {
+        nome: "Coringa (Joker)",
+        atributos: {
+            eHumano: true,
+            usaOculos: false,
+            eAdulto: true,
+            usaMagia: false,
+            apareceEmFilme: true,
+            usaArmaBranca: false,
+            temCabeloLoiro: false
+        }
+    },
+    // ----------------------------------------------------
+    // Categoria: Heróis Femininos
+    // ----------------------------------------------------
+    {
+        nome: "Mulher Maravilha",
+        atributos: {
+            eHumano: false, // Amazona/Semideusa
+            usaOculos: false,
+            eAdulto: true,
+            usaMagia: true, // Poderes divinos
+            apareceEmFilme: true,
+            usaArmaBranca: true, // Espada
+            temCabeloLoiro: false
+        }
+    },
+    {
+        nome: "Hermione Granger",
+        atributos: {
+            eHumano: true,
+            usaOculos: false,
+            eAdulto: false, // Jovem
+            usaMagia: true,
+            apareceEmFilme: true,
+            usaArmaBranca: false,
+            temCabeloLoiro: false
+        }
+    },
+    // ----------------------------------------------------
+    // Categoria: Personagens de Games
+    // ----------------------------------------------------
+    {
+        nome: "Sonic",
+        atributos: {
+            eHumano: false, // Ouriço
+            usaOculos: false,
+            eAdulto: false,
+            usaMagia: false,
+            apareceEmFilme: true,
+            usaArmaBranca: false,
+            temCabeloLoiro: false
+        }
+    },
+    {
+        nome: "Zelda (Princesa)",
+        atributos: {
+            eHumano: true, // Hylian
+            usaOculos: false,
+            eAdulto: false,
+            usaMagia: true, // Poderes da Triforce
+            apareceEmFilme: false,
+            usaArmaBranca: false,
+            temCabeloLoiro: true
+        }
+    },
+    // ----------------------------------------------------
+    // Categoria: Animação Clássica
+    // ----------------------------------------------------
+    {
+        nome: "Mickey Mouse",
+        atributos: {
+            eHumano: false, // Rato
+            usaOculos: false,
+            eAdulto: true,
+            usaMagia: false,
+            apareceEmFilme: true,
+            usaArmaBranca: false,
+            temCabeloLoiro: false
+        }
+    },
+    {
+        nome: "Shrek",
+        atributos: {
+            eHumano: false, // Ogro
+            usaOculos: false,
+            eAdulto: true,
+            usaMagia: false,
+            apareceEmFilme: true,
+            usaArmaBranca: false,
+            temCabeloLoiro: false
+        }
     }
 ];
 
